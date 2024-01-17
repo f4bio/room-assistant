@@ -5,7 +5,12 @@
 	"build": {
 		"dockerfile": "Dockerfile",
 		// Update 'VARIANT' to pick a Node version: 10, 12, 14
-		"args": { "VARIANT": "16" }
+		"args": { "VARIANT": "21" }
+	},
+  
+	"features": {
+		"ghcr.io/devcontainers/features/github-cli:1": {},
+		"ghcr.io/devcontainers/features/common-utils:2": {}
 	},
 
 	// Set *default* container specific settings.json values on container create.
@@ -16,7 +21,6 @@
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
 		"dbaeumer.vscode-eslint",
-		"ms-vscode.vscode-typescript-tslint-plugin",
 		"Orta.vscode-jest",
 		"adam-bender.commit-message-editor"
 	],
