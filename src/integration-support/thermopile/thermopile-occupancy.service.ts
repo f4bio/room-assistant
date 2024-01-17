@@ -52,12 +52,12 @@ export abstract class ThermopileOccupancyService {
    */
   findRelevantPixels(data: number[][], deltaThreshold: number): Pixel[] {
     const mean = math.mean(data);
-    const threshold = mean + deltaThreshold;
+    const threshold = math.add(mean, deltaThreshold);
 
     const relevantPixels: Pixel[] = [];
     for (const [y, row] of data.entries()) {
       for (const [x, value] of row.entries()) {
-        if (value >= threshold) {
+        if (math.larger(value, threshold)) {
           relevantPixels.push(new Pixel(x, y, value));
         }
       }
