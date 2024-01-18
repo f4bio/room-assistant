@@ -1,4 +1,23 @@
-import { Sensor } from '../../entities/sensor';
+import { Sensor } from "../../entities/sensor";
+import { ClusterService } from "../../cluster/cluster.service";
+import { MqttService } from "./mqtt.service";
+import { Test, TestingModule } from "@nestjs/testing";
+import { NestEmitterModule } from "nest-emitter";
+import { ConfigModule } from "../../config/config.module";
+import { EntitiesModule } from "../../entities/entities.module";
+import { EventEmitter } from "events";
+import { EntitiesService } from "../../entities/entities.service";
+import { ConfigService } from "../../config/config.service";
+import c from "config";
+import { MqttConfig } from "./mqtt.config";
+import { mocked } from "jest-mock";
+import * as mqtt from "async-mqtt";
+import { BinarySensor } from "../../entities/binary-sensor";
+import { DeviceTracker } from "../../entities/device-tracker";
+import { Switch } from "../../entities/switch";
+import { Camera } from "../../entities/camera";
+import { Entity } from "../../entities/entity.dto";
+import { ClusterModule } from "../../cluster/cluster.module";
 
 const mockMqttClient = {
   on: jest.fn(),
@@ -7,32 +26,12 @@ const mockMqttClient = {
   end: jest.fn(),
 };
 
-import { ClusterService } from '../../cluster/cluster.service';
-import { MqttService } from './mqtt.service';
-import { Test, TestingModule } from '@nestjs/testing';
-import { NestEmitterModule } from 'nest-emitter';
-import { ConfigModule } from '../../config/config.module';
-import { EntitiesModule } from '../../entities/entities.module';
-import { EventEmitter } from 'events';
-import { EntitiesService } from '../../entities/entities.service';
-import { ConfigService } from '../../config/config.service';
-import c from 'config';
-import { MqttConfig } from './mqtt.config';
-import { mocked } from "jest-mock";
-import * as mqtt from 'async-mqtt';
-import { BinarySensor } from '../../entities/binary-sensor';
-import { DeviceTracker } from '../../entities/device-tracker';
-import { Switch } from '../../entities/switch';
-import { Camera } from '../../entities/camera';
-import { Entity } from '../../entities/entity.dto';
-import { ClusterModule } from '../../cluster/cluster.module';
-
 jest.mock('async-mqtt', () => {
   return {
     connectAsync: jest.fn().mockReturnValue(mockMqttClient),
   };
 });
-const mockMqtt = mocked(mqtt, true);
+const mockMqtt = mocked(mqtt);
 
 describe('MqttService', () => {
   let service: MqttService;

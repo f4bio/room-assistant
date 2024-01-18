@@ -1,16 +1,16 @@
 const mockExec = jest.fn();
 
-import { Test, TestingModule } from '@nestjs/testing';
-import { BluetoothService } from './bluetooth.service';
-import { ConfigModule } from '../../config/config.module';
-import { BluetoothHealthIndicator } from './bluetooth.health';
-import noble, { Peripheral } from '@mkerix/noble';
-import * as Promises from '../../util/promises';
-import { makeCounterProvider } from '@willsoto/nestjs-prometheus';
+import { Test, TestingModule } from "@nestjs/testing";
+import { BluetoothService } from "./bluetooth.service";
+import { ConfigModule } from "../../config/config.module";
+import { BluetoothHealthIndicator } from "./bluetooth.health";
+import noble, { Peripheral } from "@mkerix/noble";
+import * as Promises from "../../util/promises";
+import { makeCounterProvider } from "@willsoto/nestjs-prometheus";
 import { mocked } from "jest-mock";
 
-jest.mock('util', () => ({
-  ...(jest.requireActual('util') as Record<string, unknown>),
+jest.mock("util", () => ({
+  ...(jest.requireActual("util") as Record<string, unknown>),
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   promisify: () => mockExec,
 }));
