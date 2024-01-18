@@ -3,7 +3,7 @@ import { EventEmitter } from 'events';
 import { Test, TestingModule } from '@nestjs/testing';
 import { EntitiesModule } from '../entities/entities.module';
 import { NestEmitterModule } from 'nest-emitter';
-import { mocked } from 'ts-jest/utils';
+import { mocked } from "jest-mock";
 import WebSocket from 'ws';
 import { Sensor } from '../entities/sensor';
 import { ClusterService } from '../cluster/cluster.service';

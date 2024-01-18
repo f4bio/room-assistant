@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { TerminusModule } from '@nestjs/terminus';
 import { ScheduleModule } from '@nestjs/schedule';
 import { HealthIndicatorService } from './health-indicator.service';
-import { mocked } from 'ts-jest/utils';
+import { mocked } from "jest-mock";
 import * as notify from 'sd-notify';
 
 const mockedNotify = mocked(notify);
@@ -12,7 +12,7 @@ describe('HealthIndicatorService', () => {
 
   beforeEach(async () => {
     jest.clearAllMocks();
-    jest.useFakeTimers('modern');
+    jest.useFakeTimers();
 
     const module: TestingModule = await Test.createTestingModule({
       imports: [TerminusModule, ScheduleModule.forRoot()],

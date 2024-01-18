@@ -128,7 +128,7 @@ describe('EntitiesService', () => {
     });
 
     it('should send state updates to publishers', () => {
-      jest.useFakeTimers('modern');
+      jest.useFakeTimers();
 
       const entity = new Sensor('test_sensor', 'Test Sensor');
       const spy = jest.spyOn(emitter, 'emit');
@@ -152,7 +152,7 @@ describe('EntitiesService', () => {
     });
 
     it('should send attribute updates to publishers', () => {
-      jest.useFakeTimers('modern');
+      jest.useFakeTimers();
 
       const entity = new Sensor('attributes_sensor', 'Sensor with attributes');
       const spy = jest.spyOn(emitter, 'emit');
@@ -176,7 +176,7 @@ describe('EntitiesService', () => {
     });
 
     it('should not send updates for non-changed values', () => {
-      jest.useFakeTimers('modern');
+      jest.useFakeTimers();
 
       const entity = new Sensor('test_sensor', 'Test Sensor');
       const spy = jest.spyOn(emitter, 'emit');
@@ -193,7 +193,7 @@ describe('EntitiesService', () => {
     });
 
     it('should not include diffs for non-changed values', () => {
-      jest.useFakeTimers('modern');
+      jest.useFakeTimers();
 
       const entity = new Sensor('test_sensor', 'Test Sensor');
       const spy = jest.spyOn(emitter, 'emit');
@@ -220,7 +220,7 @@ describe('EntitiesService', () => {
     });
 
     it('should send updates for type-changed values', () => {
-      jest.useFakeTimers('modern');
+      jest.useFakeTimers();
 
       const entity = new Sensor('test_sensor', 'Test Sensor');
       const spy = jest.spyOn(emitter, 'emit');
@@ -237,7 +237,7 @@ describe('EntitiesService', () => {
     });
 
     it('should include old values in entity updates', () => {
-      jest.useFakeTimers('modern');
+      jest.useFakeTimers();
 
       const entity = new Sensor('test_sensor', 'Test Sensor');
       const spy = jest.spyOn(emitter, 'emit');
@@ -265,7 +265,7 @@ describe('EntitiesService', () => {
     });
 
     it('should emit entity updates for array changes', () => {
-      jest.useFakeTimers('modern');
+      jest.useFakeTimers();
 
       const entity = new Sensor('test_sensor', 'Test Sensor');
       const spy = jest.spyOn(emitter, 'emit');
@@ -307,7 +307,7 @@ describe('EntitiesService', () => {
     });
 
     it('should send updates for nested objects', () => {
-      jest.useFakeTimers('modern');
+      jest.useFakeTimers();
 
       const entity = new Sensor('test_sensor', 'Test Sensor');
       const spy = jest.spyOn(emitter, 'emit');
@@ -337,7 +337,7 @@ describe('EntitiesService', () => {
     });
 
     it('should include authority in updates', () => {
-      jest.useFakeTimers('modern');
+      jest.useFakeTimers();
       jest.spyOn(service, 'hasAuthorityOver').mockReturnValue(false);
 
       const entity = new Sensor('test_sensor', 'Test Sensor');
@@ -393,7 +393,7 @@ describe('EntitiesService', () => {
 
   describe('Entity Behaviors', () => {
     it('should debounce state updates if configured', () => {
-      jest.useFakeTimers('modern');
+      jest.useFakeTimers();
       const spy = jest.spyOn(emitter, 'emit');
 
       const entityProxy = service.add(
@@ -425,7 +425,7 @@ describe('EntitiesService', () => {
     });
 
     it('should debounce state updates on leading edge if configured', () => {
-      jest.useFakeTimers('modern');
+      jest.useFakeTimers();
       const spy = jest.spyOn(emitter, 'emit');
 
       const entityProxy = service.add(
@@ -457,7 +457,7 @@ describe('EntitiesService', () => {
     });
 
     it('should calculate rolling average for non-number states if configured', () => {
-      jest.useFakeTimers('modern');
+      jest.useFakeTimers();
       const spy = jest.spyOn(emitter, 'emit');
 
       const entityProxy = service.add(
@@ -507,7 +507,7 @@ describe('EntitiesService', () => {
     });
 
     it('should calculate rolling average for number states if configured', () => {
-      jest.useFakeTimers('modern');
+      jest.useFakeTimers();
       const spy = jest.spyOn(emitter, 'emit');
 
       const entityProxy = service.add(
@@ -567,7 +567,7 @@ describe('EntitiesService', () => {
     });
 
     it('should chain entity behaviors together', () => {
-      jest.useFakeTimers('modern');
+      jest.useFakeTimers();
       const spy = jest.spyOn(emitter, 'emit');
 
       const entityProxy = service.add(

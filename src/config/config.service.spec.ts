@@ -1,11 +1,11 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { ConfigService } from './config.service';
-import _ from 'lodash';
-import yaml from 'js-yaml';
-import fs from 'fs';
-import c from 'config';
+import { Test, TestingModule } from "@nestjs/testing";
+import { ConfigService } from "./config.service";
+import _ from "lodash";
+import yaml from "js-yaml";
+import fs from "fs";
+import c from "config";
 
-const CONFIG_PASS_FILE = 'src/config/config.service.spec.pass.yml';
+const CONFIG_PASS_FILE = "src/config/config.service.spec.pass.yml";
 const CONFIG_FAIL_FILE = 'src/config/config.service.spec.fail.yml';
 
 describe('ConfigService', () => {
@@ -72,7 +72,7 @@ describe('ConfigService', () => {
   it('should parse the "fail" configuration file and confirm known errors', () => {
     const failConfig = yaml.load(fs.readFileSync(CONFIG_FAIL_FILE, 'utf8'));
 
-    // Aliign to known property paths that generate errors in CONFIG_FAIL_FILE
+    // Align to known property paths that generate errors in CONFIG_FAIL_FILE
     const errorPaths = [
       `global.integrations[9]`,
       `logger.elasticsearch.enabled`,

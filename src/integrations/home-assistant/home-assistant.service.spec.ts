@@ -6,7 +6,7 @@ const mockMqttClient = {
 };
 
 import { ClusterModule } from '../../cluster/cluster.module';
-import { mocked } from 'ts-jest/utils';
+import { mocked } from "jest-mock";
 import { Test, TestingModule } from '@nestjs/testing';
 import { HomeAssistantService } from './home-assistant.service';
 import { ConfigModule } from '../../config/config.module';
@@ -48,7 +48,7 @@ class MockClusterService extends EventEmitter {
 describe('HomeAssistantService', () => {
   let service: HomeAssistantService;
   let mockConfig: HomeAssistantConfig;
-  const mockMqtt = mocked(mqtt, true);
+  const mockMqtt = mocked(mqtt);
   const mockSystem = mocked(system);
   const loggerService = {
     log: jest.fn(),

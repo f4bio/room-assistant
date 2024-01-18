@@ -1,4 +1,4 @@
-jest.mock('kalmanjs', () => {
+jest.mock("kalmanjs", () => {
   return jest.fn().mockImplementation(() => {
     return {
       filter: (z: number): number => z,
@@ -6,30 +6,30 @@ jest.mock('kalmanjs', () => {
   });
 });
 
-import { Peripheral } from '@mkerix/noble';
-import { ConfigService } from '../../config/config.service';
-import { Test, TestingModule } from '@nestjs/testing';
+import { Peripheral } from "@mkerix/noble";
+import { ConfigService } from "../../config/config.service";
+import { Test, TestingModule } from "@nestjs/testing";
 import {
   BluetoothLowEnergyService,
   NEW_DISTANCE_CHANNEL,
-} from './bluetooth-low-energy.service';
-import { EntitiesModule } from '../../entities/entities.module';
-import { ConfigModule } from '../../config/config.module';
-import { ClusterModule } from '../../cluster/cluster.module';
-import { ScheduleModule } from '@nestjs/schedule';
-import { ClusterService } from '../../cluster/cluster.service';
-import { EntitiesService } from '../../entities/entities.service';
-import { BluetoothLowEnergyConfig } from './bluetooth-low-energy.config';
-import { Sensor } from '../../entities/sensor';
-import c from 'config';
-import { NewDistanceEvent } from './new-distance.event';
-import { BluetoothLowEnergyPresenceSensor } from './bluetooth-low-energy-presence.sensor';
-import KalmanFilter from 'kalmanjs';
-import { DeviceTracker } from '../../entities/device-tracker';
-import { DeviceTrackerConfig } from '../home-assistant/device-tracker-config';
-import * as util from 'util';
-import { BluetoothService } from '../../integration-support/bluetooth/bluetooth.service';
-import { BluetoothModule } from '../../integration-support/bluetooth/bluetooth.module';
+} from "./bluetooth-low-energy.service";
+import { EntitiesModule } from "../../entities/entities.module";
+import { ConfigModule } from "../../config/config.module";
+import { ClusterModule } from "../../cluster/cluster.module";
+import { ScheduleModule } from "@nestjs/schedule";
+import { ClusterService } from "../../cluster/cluster.service";
+import { EntitiesService } from "../../entities/entities.service";
+import { BluetoothLowEnergyConfig } from "./bluetooth-low-energy.config";
+import { Sensor } from "../../entities/sensor";
+import c from "config";
+import { NewDistanceEvent } from "./new-distance.event";
+import { BluetoothLowEnergyPresenceSensor } from "./bluetooth-low-energy-presence.sensor";
+import KalmanFilter from "kalmanjs";
+import { DeviceTracker } from "../../entities/device-tracker";
+import { DeviceTrackerConfig } from "../home-assistant/device-tracker-config";
+import * as util from "util";
+import { BluetoothService } from "../../integration-support/bluetooth/bluetooth.service";
+import { BluetoothModule } from "../../integration-support/bluetooth/bluetooth.module";
 
 jest.useFakeTimers();
 
@@ -1278,18 +1278,18 @@ describe('BluetoothLowEnergyService', () => {
       jest.spyOn(service, 'isAllowlistEnabled').mockReturnValue(true);
       jest.spyOn(service, 'isOnAllowlist').mockReturnValue(true);
 
-      await service.handleNewDistance(
+      service.handleNewDistance(
         new NewDistanceEvent(
-          'test-instance',
-          'tag-id',
-          'Test',
-          'peripheral-id',
+          "test-instance",
+          "tag-id",
+          "Test",
+          "peripheral-id",
           -80,
           -50,
           2,
           false,
-          'app-id'
-        )
+          "app-id",
+        ),
       );
 
       const newDistanceSpy = jest.spyOn(service, 'handleNewDistance');
@@ -1312,22 +1312,22 @@ describe('BluetoothLowEnergyService', () => {
     });
 
     it('should temporarily denylist devices that error out from discovery attempts', async () => {
-      jest.useFakeTimers('modern');
+      jest.useFakeTimers();
       jest
-        .spyOn(service, 'handleNewDistance')
+        .spyOn(service, "handleNewDistance")
         .mockImplementation(() => undefined);
-      jest.spyOn(service, 'isAllowlistEnabled').mockReturnValue(true);
-      jest.spyOn(service, 'isOnAllowlist').mockReturnValue(true);
+      jest.spyOn(service, "isAllowlistEnabled").mockReturnValue(true);
+      jest.spyOn(service, "isOnAllowlist").mockReturnValue(true);
       bluetoothService.queryLowEnergyDevice.mockRejectedValue(
-        new Error('expected for this test')
+        new Error("expected for this test"),
       );
 
       const peripheral = {
-        id: 'abcd1234',
+        id: "abcd1234",
         rssi: -50,
         connectable: true,
         advertisement: {
-          localName: 'Test Beacon',
+          localName: "Test Beacon",
           txPowerLevel: -72,
           manufacturerData: APPLE_MANUFACTURER_DATA,
         },

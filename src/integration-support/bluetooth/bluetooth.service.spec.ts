@@ -7,7 +7,7 @@ import { BluetoothHealthIndicator } from './bluetooth.health';
 import noble, { Peripheral } from '@mkerix/noble';
 import * as Promises from '../../util/promises';
 import { makeCounterProvider } from '@willsoto/nestjs-prometheus';
-import { mocked } from 'ts-jest/utils';
+import { mocked } from "jest-mock";
 
 jest.mock('util', () => ({
   ...(jest.requireActual('util') as Record<string, unknown>),
@@ -411,7 +411,7 @@ Requesting information ...
 
     it('should limit the connection attempt time', () => {
       expect.assertions(1);
-      jest.useFakeTimers('modern');
+      jest.useFakeTimers();
 
       const peripheral = {
         connectable: true,
@@ -434,7 +434,7 @@ Requesting information ...
 
     it('should unlock the adapter following connection time-out', () => {
       expect.assertions(1);
-      jest.useFakeTimers('modern');
+      jest.useFakeTimers();
       const unlockSpy = jest.spyOn(service, 'unlockAdapter');
 
       const peripheral = {
@@ -900,7 +900,7 @@ Requesting information ...
 
     it('should reset adapter if nothing has been detected for a while', async () => {
       jest.spyOn(Promises, 'sleep').mockResolvedValue();
-      jest.useFakeTimers('modern');
+      jest.useFakeTimers();
       const execPromise = Promise.resolve({ stdout: '-1' });
       mockExec.mockReturnValue(execPromise);
 

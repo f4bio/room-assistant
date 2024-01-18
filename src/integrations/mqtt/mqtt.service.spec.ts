@@ -18,7 +18,7 @@ import { EntitiesService } from '../../entities/entities.service';
 import { ConfigService } from '../../config/config.service';
 import c from 'config';
 import { MqttConfig } from './mqtt.config';
-import { mocked } from 'ts-jest/utils';
+import { mocked } from "jest-mock";
 import * as mqtt from 'async-mqtt';
 import { BinarySensor } from '../../entities/binary-sensor';
 import { DeviceTracker } from '../../entities/device-tracker';

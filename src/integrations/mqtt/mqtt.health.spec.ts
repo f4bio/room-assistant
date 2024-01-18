@@ -1,4 +1,4 @@
-import { mocked } from 'ts-jest/utils';
+import { mocked } from "jest-mock";
 import { MqttService } from './mqtt.service';
 import { MqttHealthIndicator } from './mqtt.health';
 import { HealthCheckError } from '@nestjs/terminus';

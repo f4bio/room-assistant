@@ -1,10 +1,10 @@
-FROM node:16-alpine3.12 as build
+FROM node:alpine as build
 ARG ROOM_ASSISTANT_VERSION=latest
 
 RUN apk add --no-cache python3 make g++ libusb-dev eudev-dev avahi-dev cairo-dev jpeg-dev pango-dev giflib-dev
 RUN npm install -g --unsafe-perm room-assistant@$ROOM_ASSISTANT_VERSION
 
-FROM node:16-alpine3.12
+FROM node:alpine
 
 WORKDIR /room-assistant
 

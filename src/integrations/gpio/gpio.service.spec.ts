@@ -6,7 +6,7 @@ import { EntitiesService } from '../../entities/entities.service';
 import { BinarySensor } from '../../entities/binary-sensor';
 import { BinarySensorConfig } from '../home-assistant/binary-sensor-config';
 import { Gpio } from 'onoff';
-import { mocked } from 'ts-jest/utils';
+import { mocked } from "jest-mock";
 import { ClusterService } from '../../cluster/cluster.service';
 import { GpioSwitch } from './gpio.switch';
 

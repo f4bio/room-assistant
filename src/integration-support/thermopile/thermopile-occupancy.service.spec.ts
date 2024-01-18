@@ -1,7 +1,7 @@
 import { ThermopileOccupancyService } from './thermopile-occupancy.service';
 import { Pixel } from './pixel';
 import { HeatmapOptions } from './thermopile-occupancy.config';
-import { mocked } from 'ts-jest/utils';
+import { mocked } from "jest-mock";
 import NodeCanvas from 'canvas';
 
 class MockThermopileOccupancyService extends ThermopileOccupancyService {
